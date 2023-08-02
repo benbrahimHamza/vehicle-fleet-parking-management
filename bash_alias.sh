@@ -1,0 +1,1 @@
+alias vfpm-test='vendor/behat/behat/bin/behat'
