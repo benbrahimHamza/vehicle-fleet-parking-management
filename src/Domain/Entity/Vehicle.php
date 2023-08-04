@@ -1,6 +1,6 @@
 <?php
 
-namespace Fulll\App\Domain\Entity;
+namespace Fulll\Domain\Entity;
 
 class Vehicle {
 
