@@ -3,11 +3,12 @@ version: '3'
 services:
   adminer:
     image: adminer
-    restart: always
     depends_on:
       - db
     ports:
       - 8080:8080
+    restart: always
+
   db:
     container_name: vfpm-db
     image: 'mariadb:latest'
@@ -17,3 +18,5 @@ services:
     ports:
       - '3306'
     restart: always
+    volumes:
+      - ./migrations:/docker-entrypoint-initdb.d
