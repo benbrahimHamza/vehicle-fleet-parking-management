@@ -5,6 +5,7 @@
         "behat/behat": "*"
     },
     "require-dev": {
+        "phpstan/phpstan": "^1.10"
     },
     "config": {
         "preferred-install": {
