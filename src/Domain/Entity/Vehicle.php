@@ -71,6 +71,7 @@ class Vehicle {
 
     /**
      * @param Location | null $location
+     * @return $this
      */
     public function setLocation($location) 
     {

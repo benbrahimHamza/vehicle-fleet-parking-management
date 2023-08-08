@@ -11,7 +11,7 @@ class Fleet {
     private int $userId;
 
     /**
-     * @var array
+     * @var Vehicle[]
      */
     private array $vehicles = [];
 
@@ -40,7 +40,7 @@ class Fleet {
     }
 
     /**
-     * @return array
+     * @return Vehicle[]
      */
     public function getVehicles(): array
     {
@@ -69,6 +69,7 @@ class Fleet {
 
     /**
      * @param Vehicle $vehicle
+     * @return void
      */
     public function addVehicle($vehicle) 
     {
