@@ -2,29 +2,22 @@
 
 namespace Fulll\Domain\Entity;
 
-class Location {
-    /** @var float */
-    private float $latitude;
-    
+class Location
+{
     /** @var float */
     private float $longitude;
 
-    /**
-     * @param float $latitude Latitude coordinates
-     * @param float $longitude Longitude coordinates
-     */
-    public function __construct($latitude, $longitude)
-    {
-        $this->latitude = $latitude;
-        $this->longitude = $longitude;
-    }
+    /** @var float */
+    private float $latitude;
 
     /**
-     * @return float
+     * @param float $longitude Longitude coordinates
+     * @param float $latitude Latitude coordinates
      */
-    public function getLatitude(): float
+    public function __construct($longitude, $latitude)
     {
-        return $this->latitude;
+        $this->longitude = $longitude;
+        $this->latitude = $latitude;
     }
 
     /**
@@ -36,13 +29,11 @@ class Location {
     }
 
     /**
-     * @param float $latitude
-     * @return $this
+     * @return float
      */
-    public function setLatitude($latitude)
+    public function getLatitude(): float
     {
-        $this->latitude = $latitude;
-        return $this;
+        return $this->latitude;
     }
 
     /**
@@ -52,6 +43,16 @@ class Location {
     public function setLongitude($longitude)
     {
         $this->$longitude = $longitude;
+        return $this;
+    }
+
+    /**
+     * @param float $latitude
+     * @return $this
+     */
+    public function setLatitude($latitude)
+    {
+        $this->latitude = $latitude;
         return $this;
     }
 }
