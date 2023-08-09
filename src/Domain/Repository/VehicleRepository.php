@@ -15,7 +15,7 @@ class VehicleRepository
      * @return string Return vehicle plate number
      * @throws Exception
      */
-    public function createVehicle(string $plateNumber, ?Location $location): string
+    public function createVehicle(string $plateNumber, ?Location $location = null): string
     {
         $pdo = new PDOConnection();
         $conn = $pdo->getPDOConnection();
