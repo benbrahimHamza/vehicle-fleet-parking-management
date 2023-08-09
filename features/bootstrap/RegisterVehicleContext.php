@@ -3,16 +3,59 @@
 declare(strict_types=1);
 
 use Behat\Behat\Context\Context;
+use Fulll\Domain\Entity\Fleet;
+use Fulll\Domain\Repository\FleetRepository;
+use Fulll\Domain\Repository\VehicleRepository;
+use Symfony\Component\Dotenv\Dotenv;
 
 class RegisterVehicleContext implements Context
 {
+    /**
+     * @var FleetRepository $fleetRepository
+     */
+    private FleetRepository $fleetRepository;
+    
+    /**
+     * @var VehicleRepository $vehicleRepository
+     */
+    private VehicleRepository $vehicleRepository;
+
+    /**
+     * @var int $currentUserId
+     */
+    private int $currentUserId;
+
+    /**
+     * @var string $currentPlateNumber
+     */
+    private string $currentPlateNumber;
+
+    /**
+     * @BeforeSuite
+     */
+    public static function prepare()
+    {
+        $dotenv = new Dotenv();
+        $dotenv->loadEnv(__DIR__ . '/../../.env');
+    }
+
+    /**
+     * @BeforeScenario
+     */
+    public function before()
+    {
+        $this->fleetRepository = new FleetRepository();
+        $this->vehicleRepository = new VehicleRepository();
+        $this->currentUserId = rand();
+        $this->currentPlateNumber = 'test' . rand();
+    }
 
     /**
      * @Given my fleet
      */
     public function myFleet()
     {
-        throw new Exception();
+        $this->fleetRepository->createFleet($this->currentUserId);
     }
 
     /**
@@ -20,7 +63,7 @@ class RegisterVehicleContext implements Context
      */
     public function aVehicle()
     {
-        throw new Exception();
+        $this->vehicleRepository->createVehicle($this->currentPlateNumber);
     }
 
     /**
@@ -28,7 +71,10 @@ class RegisterVehicleContext implements Context
      */
     public function iRegisterThisVehicleIntoMyFleet()
     {
-        throw new Exception();
+        $fleet = $this->fleetRepository->find($this->currentUserId);
+        $vehicle = $this->vehicleRepository->findByPlateNumber($this->currentPlateNumber);
+
+        $this->fleetRepository->registerVehicle($fleet, $vehicle);
     }
 
     /**
@@ -36,7 +82,7 @@ class RegisterVehicleContext implements Context
      */
     public function thisVehicleShouldBePartOfMyVehicleFleet()
     {
-        throw new Exception();
+        $this->vehicleRepository->findVehicleIdsByFleetId($this->currentUserId);
     }
 
     /**
@@ -44,7 +90,7 @@ class RegisterVehicleContext implements Context
      */
     public function iHaveRegisteredThisVehicleIntoMyFleet()
     {
-        throw new Exception();
+        $this->vehicleRepository->findVehicleIdsByFleetId($this->currentUserId);
     }
 
     /**
