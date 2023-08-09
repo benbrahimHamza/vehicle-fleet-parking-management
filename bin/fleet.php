@@ -17,7 +17,7 @@ $dotenv->load(__DIR__.'/../.env');
 $application = new Application();
 
 $application->add(new CreateFleetCommand(new FleetRepository()));
-$application->add(new LocalizeVehicleCommand());
+$application->add(new LocalizeVehicleCommand(new FleetRepository(), new VehicleRepository()));
 $application->add(new RegisterVehicleCommand(new FleetRepository(), new VehicleRepository()));
 
 $application->add(new CreateVehiclesAndLocationsCommand(new VehicleRepository()));

@@ -55,4 +55,18 @@ class Location
         $this->latitude = $latitude;
         return $this;
     }
+
+    /**
+     * @return string | null Returns stringified location
+     */
+    public function serializeLocation(): ?string
+    {
+        $locationString = json_encode(array($this->longitude, $this->latitude));
+        
+        if (!$locationString) {
+            return null;
+        }
+
+        return $locationString;
+    }
 }

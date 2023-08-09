@@ -51,7 +51,7 @@ class RegisterVehicleCommand extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        print("Registering Vehicles");
+        print("Registering Vehicles\n");
         $fleetId = $input->getArgument('fleetId');
         $vehiclePlateNumber = $input->getArgument('vehiclePlateNumber');
 
